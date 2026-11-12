@@ -1,35 +1,42 @@
 # yoppi.in
 
-YOPPI — Experiences for a Brighter Tomorrow.
+YOPPI: experiences for schools and colleges.
 
-A static marketing site (no build step, no backend) served from GitHub Pages at
-[yoppi.in](https://yoppi.in).
+A static site (no build step, no backend) served from GitHub Pages at
+[yoppi.in](https://yoppi.in). It follows the InScene design language: Inter,
+navy/blue/teal on white, hairline cards and navy-tinted shadows.
 
 ## Pages
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Home — positioning, the four dimensions of development, the four audiences |
-| `offerings.html` | All offerings, tabbed by audience (`#schools`, `#colleges`, `#young-firms`, `#gccs`) |
-| `contact.html` | Contact details and an enquiry form that hands off to WhatsApp or email |
+| `index.html` | Home: what's live today, schools and colleges, how we work |
+| `offerings.html` | Offering cards for `#schools` and `#colleges`, each opening a detail dialog |
+| `contact.html` | Both founders (phone, WhatsApp, LinkedIn) and email |
 
-Each audience tab is deep-linkable, so `offerings.html#gccs` opens straight on
-that panel — use those links when sending the site to a specific prospect.
+Deep links: `offerings.html#colleges` opens the colleges tab, and
+`offerings.html?offering=defend` opens that offering's dialog directly.
+
+## Editing offerings
+
+Every card and dialog is rendered from `assets/js/offerings-data.js`. Set
+`status: 'live'` with an `href` for something people can use today, or
+`status: 'soon'` for something in development (its button goes to Contact).
+
+Live links: Career Simulator and Scenario Learning open InScene
+(`inscene.anagat.net`), DEFEND opens `defend.anagat.net`.
 
 ## Structure
 
 ```
-assets/css/   base.css (tokens) · components.css (nav, cards, footer, forms)
-              home.css · offerings.css · contact.css
-assets/js/    main.js (nav, reveal, year) · offerings.js (tabs) · contact.js (enquiry)
-assets/images/yoppi-icon.png (brand mark, 1024px) + 512/180 sizes
+assets/css/site.css            all styles (tokens at the top)
+assets/js/offerings-data.js    offerings content
+assets/js/site.js              header, reveal, cards, tabs, dialog, copy email
+assets/images/offerings/       16:9 thumbnails, <slug>.webp (1600w) + <slug>-800.webp
+assets/images/founders/        founder photos
+assets/fonts/inter-var.woff2   Inter Variable (OFL)
 ```
-
-Colours for the four pillars — growth, wellness, connection, exposure — are CSS
-custom properties in `base.css`. Any block can adopt a pillar palette with
-`data-pillar="wellness"`, which sets `--pillar`, `--pillar-soft` and
-`--pillar-tint` for everything inside it.
 
 ## Contact
 
-WhatsApp +91 86709 90985 · +91 89794 84758 · founder@yoppi.in
+founder@yoppi.in · +91 86709 90985 · +91 89794 84758
