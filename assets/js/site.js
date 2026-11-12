@@ -163,7 +163,7 @@
 
   /* ------------------------------------------------------------------ Tabs */
 
-  var tablist = document.querySelector('[role="tablist"]');
+  var tablist = document.querySelector('.offerings-bar [role="tablist"]');
   var tabs = tablist ? Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]')) : [];
 
   function selectTab(id, opts) {
@@ -235,8 +235,11 @@
   function dialogHtml(o) {
     var live = o.status === 'live';
     var audience = o.audience === 'schools' ? 'For schools' : 'For colleges';
+    var external = live && /^https?:/.test(o.href);
     var action = live
-      ? '<a class="btn btn-primary btn-lg" href="' + o.href + '" target="_blank" rel="noopener">' + esc(o.cta) + icon('arrowUpRight', 'icon-out') + '</a>'
+      ? (external
+        ? '<a class="btn btn-primary btn-lg" href="' + o.href + '" target="_blank" rel="noopener">' + esc(o.cta) + icon('arrowUpRight', 'icon-out') + '</a>'
+        : '<a class="btn btn-primary btn-lg" href="' + o.href + '">' + esc(o.cta) + icon('arrowRight', 'icon-nudge') + '</a>')
       : '<a class="btn btn-primary btn-lg" href="contact.html">' + icon('message') + 'Talk to us about this</a>';
     var facts = [['Primary pillar', pillarBadge(o.pillar)]];
     if (o.alsoBuilds && o.alsoBuilds.length) facts.push(['Also builds', o.alsoBuilds.map(pillarBadge).join('')]);

@@ -56,6 +56,28 @@
       alt: 'Four students discuss a practical science investigation at a school courtyard table.'
     },
     {
+      slug: 'future-skills-lab',
+      audience: 'schools',
+      title: 'Future Skills Lab',
+      pillar: 'Growth',
+      who: 'Class 6 to 12',
+      format: '12 courses · 2 h learning + 1 h InScene mission',
+      alsoBuilds: ['Exposure'],
+      tagline: 'Understand, create and thrive in a changing world.',
+      summary:
+        'Twelve courses on money, thinking, people, digital life, AI and the world beyond school, each assessed through an InScene mission.',
+      description:
+        'Six skill areas, two courses each, written separately for Class 6\u20138, 9\u201310 and 11\u201312. Students learn through short interactive lessons on YOPPI, then prove what they learned in an InScene mission: a real-life situation where they make decisions and see the consequences, such as managing \u20b9800 for a class trip, spotting a fake scholarship offer or deciding whether an AI tool should screen scholarship applications.',
+      outcomes: ['Financial literacy', 'Critical thinking', 'Communication & teamwork', 'Online safety', 'Responsible AI use', 'Real-world readiness'],
+      status: 'live',
+      statusNote: 'The course catalogue is live on YOPPI: browse all 36 grade-specific versions and their InScene missions. Courses open with partner schools first.',
+      href: 'future-skills-lab.html',
+      cta: 'Open Future Skills Lab',
+      where: 'Opens on YOPPI',
+      image: 'future-skills-lab',
+      alt: 'Four students work together around laptops and project sheets in a classroom.'
+    },
+    {
       slug: 'startup-sprint',
       audience: 'schools',
       title: 'Startup Sprint',
@@ -71,23 +93,6 @@
       status: 'soon',
       image: 'startup-sprint',
       alt: 'Three students plan an idea together with sticky notes and a laptop.'
-    },
-    {
-      slug: 'future-skills-lab',
-      audience: 'schools',
-      title: 'Future Skills Lab',
-      pillar: 'Exposure',
-      who: 'Middle and senior school',
-      format: 'Hands-on lab sessions',
-      alsoBuilds: [],
-      tagline: 'Understand, create and thrive in a changing world.',
-      summary: 'Hands-on sessions with AI, digital tools and creative technology, so students learn by making.',
-      description:
-        'Practical sessions where students use AI and digital tools to make things, not just read about them. They learn how the tools work, where they fall short and how to use them responsibly in their own projects.',
-      outcomes: ['Tech literacy', 'Digital creativity', 'Hands-on experience', 'Future readiness'],
-      status: 'soon',
-      image: 'future-skills-lab',
-      alt: 'Four students work together around laptops and project sheets in a classroom.'
     },
     {
       slug: 'growwell',
