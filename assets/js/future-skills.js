@@ -1,5 +1,5 @@
-/* YOPPI Future Skills Lab: class tabs, skill-area chips, course cards and the course dialog.
-   State lives in the URL: ?class=9-10&area=money&course=M01 */
+/* YOPPI Future Skills Lab: class tabs, course cards and the course dialog.
+   State lives in the URL: ?class=9-10&course=M01 */
 (function () {
   'use strict';
 
@@ -8,8 +8,6 @@
   var grid = document.querySelector('[data-fsl-grid]');
   if (!FSL || !bandsEl || !grid) return;
 
-  var areasEl = document.querySelector('[data-fsl-areas]');
-  var countEl = document.querySelector('[data-fsl-count]');
   var panel = document.getElementById('fsl-panel');
 
   // Lucide icons (ISC), inlined.
@@ -48,32 +46,23 @@
 
   var params = new URLSearchParams(location.search);
   var state = {
-    band: bandOf(params.get('class')) ? params.get('class') : FSL.bands[0].id,
-    area: areaOf(params.get('area')) ? params.get('area') : null
+    band: bandOf(params.get('class')) ? params.get('class') : FSL.bands[0].id
   };
 
   function writeUrl(courseId, courseBand) {
     var p = new URLSearchParams();
     if (state.band !== FSL.bands[0].id || courseId) p.set('class', courseBand || state.band);
-    if (state.area) p.set('area', state.area);
     if (courseId) p.set('course', courseId);
     var q = p.toString();
     history.replaceState(null, '', location.pathname + (q ? '?' + q : ''));
   }
 
-  /* ------------------------------------------------------- Tabs and chips */
+  /* ------------------------------------------------------------------ Tabs */
 
   bandsEl.innerHTML = FSL.bands.map(function (b) {
     return '<button type="button" class="tab" role="tab" id="fsl-tab-' + b.id + '" data-band="' + b.id + '" aria-controls="fsl-panel">' + esc(b.label) + '</button>';
   }).join('');
   var tabs = Array.prototype.slice.call(bandsEl.querySelectorAll('[role="tab"]'));
-
-  areasEl.innerHTML =
-    '<button type="button" class="fchip" data-area="">All</button>' +
-    FSL.areas.map(function (a) {
-      return '<button type="button" class="fchip" data-area="' + a.id + '"><span class="fchip-dot" aria-hidden="true"></span>' + esc(a.name) + '</button>';
-    }).join('');
-  var chips = Array.prototype.slice.call(areasEl.querySelectorAll('.fchip'));
 
   tabs.forEach(function (tab, i) {
     tab.addEventListener('click', function () { setBand(tab.getAttribute('data-band')); });
@@ -84,14 +73,6 @@
       else if (e.key === 'Home') next = tabs[0];
       else if (e.key === 'End') next = tabs[tabs.length - 1];
       if (next) { e.preventDefault(); setBand(next.getAttribute('data-band')); next.focus(); }
-    });
-  });
-  chips.forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      var a = chip.getAttribute('data-area') || null;
-      state.area = state.area === a ? null : a;
-      render();
-      writeUrl();
     });
   });
 
@@ -128,15 +109,7 @@
       t.tabIndex = on ? 0 : -1;
     });
     panel.setAttribute('aria-labelledby', 'fsl-tab-' + state.band);
-    chips.forEach(function (c) {
-      var a = c.getAttribute('data-area') || null;
-      c.setAttribute('aria-pressed', String(a === state.area));
-    });
-    var list = FSL.courses.filter(function (c) { return !state.area || c.area === state.area; });
-    grid.innerHTML = list.map(cardHtml).join('');
-    var band = bandOf(state.band);
-    countEl.innerHTML = '<strong>' + list.length + '</strong> course' + (list.length === 1 ? '' : 's') + ' · ' + esc(band.label) +
-      (state.area ? ' · ' + esc(areaOf(state.area).name) : '');
+    grid.innerHTML = FSL.courses.map(cardHtml).join('');
   }
 
   render();
