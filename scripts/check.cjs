@@ -35,6 +35,11 @@ for (const html of fs.readdirSync(ROOT).filter((f) => f.endsWith('.html'))) {
 global.window = {};
 require(path.join(ROOT, 'assets/js/offerings-data.js'));
 for (const o of window.YOPPI_OFFERINGS) {
+  for (const m of o.modes || []) {
+    for (const ref of [m.href, m.download && m.download.href].filter(Boolean)) {
+      if (!/^https?:/.test(ref) && !fs.existsSync(path.join(ROOT, ref))) { failures++; console.log('✗ offering mode points nowhere:', o.slug, ref); }
+    }
+  }
   if (o.status === 'live' && o.href && !/^https?:/.test(o.href) && !fs.existsSync(path.join(ROOT, o.href))) { failures++; console.log('✗ live offering points nowhere:', o.slug, o.href); }
 }
 

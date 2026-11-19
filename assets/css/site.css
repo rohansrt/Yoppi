@@ -723,6 +723,17 @@ svg { flex-shrink: 0; }
 .mode-points li { display: flex; gap: 0.5rem; align-items: flex-start; color: var(--navy); font-size: 0.875rem; line-height: 1.45; }
 .mode-points .icon { flex-shrink: 0; width: 16px; height: 16px; margin-top: 0.125rem; color: var(--m); }
 
+.mode-download {
+  display: flex; align-items: center; gap: 0.625rem; margin-top: auto; padding: 0.625rem 0.875rem;
+  border-radius: 10px; background: var(--white); box-shadow: var(--shadow-card);
+  color: var(--m); font-size: 0.875rem; font-weight: 600; line-height: 1.3;
+  transition: box-shadow 150ms var(--ease), background 150ms var(--ease);
+}
+.mode-points + .mode-download { margin-top: 1rem; }
+.mode-download:hover { box-shadow: var(--shadow-lift); }
+.mode-download .icon { flex-shrink: 0; }
+.mode-download small { display: block; margin-top: 0.125rem; color: var(--ink-500); font-size: 0.75rem; font-weight: 500; }
+
 .foot-actions { display: flex; flex-shrink: 0; gap: 0.625rem; }
 
 .dialog-foot {

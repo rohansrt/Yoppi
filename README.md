@@ -26,6 +26,7 @@ Every card and dialog is rendered from `assets/js/offerings-data.js`. Set
 `status: 'soon'` for something in development (its button goes to Contact).
 An offering with a `modes` list (Startup Sprint: online simulator or on-campus
 bootcamp) shows them as a "Two ways to run it" choice, with one footer button each.
+A mode can carry a `download` (the bootcamp brochure lives in `assets/docs/`).
 
 Live links: Career Simulator and Scenario Learning open InScene
 (`inscene.anagat.net`), DEFEND opens `defend.anagat.net`, and Future Skills Lab

@@ -477,6 +477,9 @@ const RUNS = {
       const modes = await page.$$eval('.offer-dialog .mode', (els) => els.map((e) => e.dataset.mode));
       assert.deepStrictEqual(modes, ['online', 'offline'], 'dialog offers online and on-campus');
       assert.strictEqual(await page.getAttribute('.offer-dialog .dialog-foot a[data-mode="offline"]', 'href'), 'contact.html');
+      const brochure = await page.getAttribute('.offer-dialog .mode-download', 'href');
+      const pdf = await page.request.get(BASE + brochure);
+      assert(pdf.ok() && pdf.headers()['content-type'].includes('pdf'), 'brochure PDF is served');
       const career = await page.$eval('[data-offering="career-simulator"]', (e) => e.getAttribute('aria-label'));
       assert(career.includes('live'));
       await page.click('.offer-dialog .dialog-foot a.btn');

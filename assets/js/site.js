@@ -12,6 +12,7 @@
     x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
     check: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
     message: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
+    download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>',
     monitor: '<rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>',
     users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
   };
@@ -247,6 +248,10 @@
             '<p class="mode-meta">' + esc(m.meta) + '</p>' +
             '<p class="mode-text">' + esc(m.text) + '</p>' +
             '<ul class="mode-points">' + m.points.map(function (t) { return '<li>' + icon('check') + '<span>' + esc(t) + '</span></li>'; }).join('') + '</ul>' +
+            (m.download
+              ? '<a class="mode-download" href="' + m.download.href + '" download>' + icon('download') +
+                '<span>' + esc(m.download.label) + '<small>' + esc(m.download.meta) + '</small></span></a>'
+              : '') +
           '</li>';
         }).join('') +
       '</ul></div>'

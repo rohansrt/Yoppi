@@ -114,7 +114,12 @@
             'YOPPI brings facilitators, Idea Bank cards, Sprint Kits and the AI juror'
           ],
           cta: 'Plan a bootcamp',
-          href: 'contact.html'
+          href: 'contact.html',
+          download: {
+            href: 'assets/docs/yoppi-startup-sprint-bootcamp-brochure.pdf',
+            label: 'Download the bootcamp brochure',
+            meta: 'PDF · 6 pages · 100 KB'
+          }
         }
       ],
       status: 'live',
