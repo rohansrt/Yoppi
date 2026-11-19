@@ -16,7 +16,7 @@ function walk(dir, ext, out = []) {
   return out;
 }
 
-for (const js of walk(path.join(ROOT, 'assets'), '.js').concat(walk(path.join(ROOT, 'tests'), '.cjs'), walk(path.join(ROOT, 'scripts'), '.cjs'))) {
+for (const js of walk(path.join(ROOT, 'assets'), '.js').concat(walk(path.join(ROOT, 'scripts'), '.cjs'))) {
   try { execFileSync(process.execPath, ['--check', js], { stdio: 'pipe' }); }
   catch (e) { failures++; console.log('✗ syntax', path.relative(ROOT, js), String(e.stderr).split('\n')[0]); }
 }
@@ -31,7 +31,7 @@ for (const html of fs.readdirSync(ROOT).filter((f) => f.endsWith('.html'))) {
   }
 }
 
-// The offering data must point the live Startup Sprint card at a page that exists.
+// Offering links (and mode links and downloads) on this site must point at files that exist.
 global.window = {};
 require(path.join(ROOT, 'assets/js/offerings-data.js'));
 for (const o of window.YOPPI_OFFERINGS) {

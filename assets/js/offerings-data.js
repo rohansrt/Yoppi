@@ -4,6 +4,7 @@
 (function () {
   var INSCENE_CAREER = 'https://inscene.anagat.net/products?category=career';
   var INSCENE_SCHOOL = 'https://inscene.anagat.net/products?category=school';
+  var INSCENE_SPRINT = 'https://inscene.anagat.net/startup-sprint';
   var DEFEND = 'https://defend.anagat.net/';
 
   var SOON_NOTE =
@@ -96,11 +97,11 @@
           kind: 'online',
           label: 'Online',
           title: 'Startup City simulator',
-          meta: '20–30 minutes · on YOPPI · each student plays',
+          meta: '20–30 minutes · on InScene · each student plays',
           text: 'A short simulation: find a problem, talk to pretend customers, build a product, open a pretend shop and download a personal startup report.',
           points: ['No sign-up and nothing to install', 'All money and sales are pretend', 'Separate versions for Class 6–8, 9–10 and 11–12'],
           cta: 'Play online',
-          href: 'startup-sprint.html'
+          href: INSCENE_SPRINT
         },
         {
           kind: 'offline',
@@ -123,8 +124,8 @@
         }
       ],
       status: 'live',
-      statusNote: 'The Startup City simulator is live on YOPPI for Class 6–12. The on-campus bootcamp starts with a 30-minute planning call to decide dates, grade tracks and cohort size.',
-      href: 'startup-sprint.html',
+      statusNote: 'The Startup City simulator is live on InScene for Class 6–12. The on-campus bootcamp starts with a 30-minute planning call to decide dates, grade tracks and cohort size.',
+      href: INSCENE_SPRINT,
       cta: 'Play Startup Sprint',
       where: 'Online or on campus',
       image: 'startup-sprint',

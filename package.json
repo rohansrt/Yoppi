@@ -1,14 +1,8 @@
 {
   "name": "yoppi-site",
   "private": true,
-  "description": "Static site. These scripts are for checks and tests only; nothing here is needed to serve the site.",
+  "description": "Static site. This script is for checks only; nothing here is needed to serve the site.",
   "scripts": {
-    "check": "node scripts/check.cjs",
-    "test": "node --test tests/*.test.cjs",
-    "test:e2e": "node tests/e2e/startup-sprint.e2e.cjs",
-    "serve": "node tests/e2e/serve.cjs"
-  },
-  "devDependencies": {
-    "playwright": "1.56.1"
+    "check": "node scripts/check.cjs"
   }
 }
