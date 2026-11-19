@@ -11,7 +11,9 @@
     arrowUpRight: '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
     x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
     check: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
-    message: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>'
+    message: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
+    monitor: '<rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>',
+    users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
   };
   function icon(name, cls) {
     return '<svg class="icon ' + (cls || '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON_PATHS[name] + '</svg>';
@@ -232,11 +234,36 @@
     });
   }
 
+  // An offering that can run more than one way (Startup Sprint: online or on campus) shows the
+  // choice first; each option's button sits in the dialog footer.
+  function modesHtml(modes) {
+    return (
+      '<div class="dialog-section modes-section"><h3>Two ways to run it</h3><ul class="modes">' +
+        modes.map(function (m) {
+          return '<li class="mode" data-mode="' + m.kind + '">' +
+            '<div class="mode-head"><span class="mode-icon">' + icon(m.kind === 'offline' ? 'users' : 'monitor') + '</span>' +
+              '<span class="mode-label">' + esc(m.label) + '</span></div>' +
+            '<h4 class="mode-title">' + esc(m.title) + '</h4>' +
+            '<p class="mode-meta">' + esc(m.meta) + '</p>' +
+            '<p class="mode-text">' + esc(m.text) + '</p>' +
+            '<ul class="mode-points">' + m.points.map(function (t) { return '<li>' + icon('check') + '<span>' + esc(t) + '</span></li>'; }).join('') + '</ul>' +
+          '</li>';
+        }).join('') +
+      '</ul></div>'
+    );
+  }
+
   function dialogHtml(o) {
     var live = o.status === 'live';
     var audience = o.audience === 'schools' ? 'For schools' : 'For colleges';
     var external = live && /^https?:/.test(o.href);
-    var action = live
+    var modes = live && o.modes && o.modes.length ? o.modes : null;
+    var action = modes
+      ? '<div class="foot-actions">' + modes.map(function (m, i) {
+          return '<a class="btn ' + (i === 0 ? 'btn-primary' : 'btn-secondary') + ' btn-lg" href="' + m.href + '" data-mode="' + m.kind + '">' +
+            esc(m.cta) + icon('arrowRight', 'icon-nudge') + '</a>';
+        }).join('') + '</div>'
+      : live
       ? (external
         ? '<a class="btn btn-primary btn-lg" href="' + o.href + '" target="_blank" rel="noopener">' + esc(o.cta) + icon('arrowUpRight', 'icon-out') + '</a>'
         : '<a class="btn btn-primary btn-lg" href="' + o.href + '">' + esc(o.cta) + icon('arrowRight', 'icon-nudge') + '</a>')
@@ -252,6 +279,7 @@
           '<div class="dialog-meta">' + statusPill(o) + '<span>' + audience + '</span></div>' +
           '<h2 class="dialog-title" id="offer-title">' + esc(o.title) + '</h2>' +
           '<p class="dialog-tagline">' + esc(o.tagline) + '</p>' +
+          (modes ? modesHtml(modes) : '') +
           '<dl class="facts" style="--cols:' + facts.length + '">' +
             facts.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>'; }).join('') +
           '</dl>' +

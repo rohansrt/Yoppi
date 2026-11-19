@@ -82,19 +82,46 @@
       audience: 'schools',
       title: 'Startup Sprint',
       pillar: 'Growth',
-      who: 'Middle and senior school',
-      format: 'Online simulator (20–30 min) + multi-week team programme',
+      who: 'Class 6 to 12',
+      format: 'Online simulator (20–30 min) or a two-day on-campus bootcamp',
       alsoBuilds: ['Connection'],
       tagline: 'From curious students to confident problem-solvers.',
       summary: 'Students find a real problem, form a team, build a simple solution and pitch it.',
       description:
-        'Students look around their school and community for a problem worth solving. In small teams they shape an idea, test it with real people, build a simple version and present it, learning that good ideas come from listening as much as from inspiration. It starts online in Startup City: a short simulation where students find a problem, talk to pretend customers, build a product, open a pretend shop and download their own startup report.',
-      outcomes: ['Entrepreneurial mindset', 'Problem solving', 'Teamwork & collaboration', 'Presentation skills'],
+        'Students look around their school and community for a problem worth solving. They shape an idea, test it with real people, build a simple version and present it, learning that good ideas come from listening as much as from inspiration. Schools can run it online in Startup City, or bring the full Startup Sprint Bootcamp to campus.',
+      outcomes: ['Entrepreneurial mindset', 'Problem solving', 'User research habits', 'Teamwork & collaboration', 'Presentation skills'],
+      // Two ways to run it: shown as a choice at the top of the dialog, with a button for each in the footer.
+      modes: [
+        {
+          kind: 'online',
+          label: 'Online',
+          title: 'Startup City simulator',
+          meta: '20–30 minutes · on YOPPI · each student plays',
+          text: 'A short simulation: find a problem, talk to pretend customers, build a product, open a pretend shop and download a personal startup report.',
+          points: ['No sign-up and nothing to install', 'All money and sales are pretend', 'Separate versions for Class 6–8, 9–10 and 11–12'],
+          cta: 'Play online',
+          href: 'startup-sprint.html'
+        },
+        {
+          kind: 'offline',
+          label: 'On campus',
+          title: 'Startup Sprint Bootcamp',
+          meta: '2 sprint days + 1 field week · facilitator-led teams',
+          text: 'Teams pick a real problem, interview real users, take their idea into the field for a week, then prototype and pitch to a human and AI jury at a showcase parents can watch.',
+          points: [
+            'Three tracks: Explorers (6–8), Builders (9–10), Ventures (11–12)',
+            '50–80 students per cohort, in teams of 3–5',
+            'YOPPI brings facilitators, Idea Bank cards, Sprint Kits and the AI juror'
+          ],
+          cta: 'Plan a bootcamp',
+          href: 'contact.html'
+        }
+      ],
       status: 'live',
-      statusNote: 'The Startup City simulator is live on YOPPI for Class 6–12: no sign-up, nothing to install, and all money and sales are pretend. The multi-week team programme runs with partner schools.',
+      statusNote: 'The Startup City simulator is live on YOPPI for Class 6–12. The on-campus bootcamp starts with a 30-minute planning call to decide dates, grade tracks and cohort size.',
       href: 'startup-sprint.html',
       cta: 'Play Startup Sprint',
-      where: 'Opens on YOPPI',
+      where: 'Online or on campus',
       image: 'startup-sprint',
       alt: 'Three students plan an idea together with sticky notes and a laptop.'
     },

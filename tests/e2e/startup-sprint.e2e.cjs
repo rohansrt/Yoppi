@@ -474,12 +474,15 @@ const RUNS = {
       await shot(page, 'entry-01-offering-dialog', false);
       const href = await page.getAttribute('.offer-dialog .dialog-foot a.btn', 'href');
       assert.strictEqual(href, 'startup-sprint.html');
+      const modes = await page.$$eval('.offer-dialog .mode', (els) => els.map((e) => e.dataset.mode));
+      assert.deepStrictEqual(modes, ['online', 'offline'], 'dialog offers online and on-campus');
+      assert.strictEqual(await page.getAttribute('.offer-dialog .dialog-foot a[data-mode="offline"]', 'href'), 'contact.html');
       const career = await page.$eval('[data-offering="career-simulator"]', (e) => e.getAttribute('aria-label'));
       assert(career.includes('live'));
       await page.click('.offer-dialog .dialog-foot a.btn');
       await page.waitForSelector('[data-testid="welcome"]');
       assert.deepStrictEqual(page.errors, []);
-      log('Existing pages load; the Startup Sprint card opens the simulator; Career Simulator card unchanged', true);
+      log('Existing pages load; the Startup Sprint dialog offers online + on campus and opens the simulator; Career Simulator card unchanged', true);
       await page.context().close();
     }
   } catch (err) {

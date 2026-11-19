@@ -24,6 +24,8 @@ Deep links: `offerings.html#colleges` opens the colleges tab, and
 Every card and dialog is rendered from `assets/js/offerings-data.js`. Set
 `status: 'live'` with an `href` for something people can use today, or
 `status: 'soon'` for something in development (its button goes to Contact).
+An offering with a `modes` list (Startup Sprint: online simulator or on-campus
+bootcamp) shows them as a "Two ways to run it" choice, with one footer button each.
 
 Live links: Career Simulator and Scenario Learning open InScene
 (`inscene.anagat.net`), DEFEND opens `defend.anagat.net`, and Future Skills Lab
